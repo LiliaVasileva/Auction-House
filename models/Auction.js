@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const auctonSchema = mongoose.Schema({
+const auctionSchema = mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -16,7 +16,7 @@ const auctonSchema = mongoose.Schema({
         type: String,
         required: true,
         enum: {
-            value: ['Vehicles', 'Real Estate', 'Electronics', 'Furniture', 'Other'],
+            values: ['estate', 'vehicles', 'furniture', 'electronics', 'other'],
             message: 'Invalid category!'
         }
     },
@@ -38,3 +38,7 @@ const auctonSchema = mongoose.Schema({
     }]
 });
 
+
+const Auction = mongoose.model('Auction', auctionSchema);
+
+module.exports = Auction;

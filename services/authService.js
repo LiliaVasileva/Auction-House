@@ -6,7 +6,7 @@ const { SECRET } = require("../constants");
 exports.findByUsername = (username) => User.findOne({ username });
 exports.findByEmail = (email) =>  User.findOne({ email: email });
 
-exports.register = async (email,firstName, lastName, password, repeatPassword ) => {
+exports.register = async (email , firstName, lastName, password, repeatPassword ) => {
   if (password !== repeatPassword) {
     throw new Error("Password mismatch!");
   }
@@ -26,7 +26,7 @@ exports.register = async (email,firstName, lastName, password, repeatPassword ) 
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  await User.create({ username, email, password: hashedPassword });
+  await User.create({ email,firstName, lastName, password: hashedPassword });
 
   return this.login(email, password);
 
